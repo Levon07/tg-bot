@@ -1,6 +1,6 @@
 import ccxt
 
-exchange = ccxt.binance({"options": {"defaultType": "future"}})
+exchange = ccxt.bybit({"options": {"defaultType": "future"}})
 
 
 def get_structure():

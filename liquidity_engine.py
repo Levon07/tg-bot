@@ -1,6 +1,6 @@
 import ccxt
 
-exchange = ccxt.binance({"options": {"defaultType": "future"}})
+exchange = ccxt.bybit({"options": {"defaultType": "future"}})
 
 def get_liquidity():
     ohlcv = exchange.fetch_ohlcv("BTC/USDT", timeframe="1h", limit=100)

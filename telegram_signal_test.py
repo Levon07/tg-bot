@@ -1,13 +1,15 @@
 import asyncio
+import os
 from telegram import Bot
 from signal_engine import generate_signal
 
-TOKEN = "8775311245:AAGswPvlbmERzaAALjejfqbzHmgbgMqs8RE"
-CHAT_ID = 1233256209
+CHAT_ID = int(os.getenv("TELEGRAM_CHAT_ID"))
 
 
 async def main():
-    bot = Bot(token=TOKEN)
+
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    bot = Bot(token=token)
 
     signal = generate_signal()
 
@@ -17,6 +19,13 @@ BTC/USDT SIGNAL
 ACTION: {signal['action']}
 PRICE: {signal['price']}
 SCORE: {signal['score']}
+HTF: {signal['htf_bias']}
+VOL: {signal['volatility']}
+
+ENTRY: {signal['entry']}
+SL: {signal['stop_loss']}
+TP1: {signal['take_profit_1']}
+TP2: {signal['take_profit_2']}
 
 STATUS: {'ENTER NOW' if signal['action'] != 'NO TRADE' else 'WAIT'}
 """
@@ -26,4 +35,5 @@ STATUS: {'ENTER NOW' if signal['action'] != 'NO TRADE' else 'WAIT'}
     print("sent")
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
